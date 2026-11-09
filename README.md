@@ -123,23 +123,6 @@ folder `data/` (agar path relatif pada notebook sesuai).
 - **Model size** — ukuran parameter + buffer (MB).
 - **AUC** — kemampuan diskriminasi model dari kurva ROC.
 
-## Tim
-
-| Nama | NIM | Kontribusi |
-|---|---|---|
-| Tegar Wijaya Kusuma | 41523010217 | Domain Electronics |
-| Ali Umar Rafsanjani | 41523010191 | Domain Home |
-| Muhammad Ihsar Fatiha | 41523010202 | Domain Beauty (repository ini) |
-
-**Dosen Pengampu:** Eliyani, Dr. Ir., M.Kom.
-
-## Referensi Utama
-
-- Devlin et al. (2019). *BERT: Pre-training of Deep Bidirectional Transformers.*
-- Sanh et al. (2019). *DistilBERT, a distilled version of BERT.*
-- Mudambi & Schuff (2010). *What Makes a Helpful Online Review?*
-- Hou et al. (2024). *Bridging Language and Items for Retrieval and Recommendation.*
-- Amazon Reviews 2023 — <https://amazon-reviews-2023.github.io/>
 
 ## Lisensi
 
