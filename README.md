@@ -59,12 +59,49 @@ repository ini. Ditampilkan hanya sebagai konteks perbandingan.
 | Home | **BERT** | **0.964** | 7.75 | 1.93× |
 | Home | DistilBERT | 0.962 | **4.02** | |
 
+## Visualisasi
+
+Semua gambar di bawah diambil langsung dari output notebook.
+
+### Exploratory Data Analysis (EDA)
+
+Distribusi kelas seimbang 50:50, word cloud per kelas, distribusi panjang ulasan,
+dan rata-rata jumlah kata. Terlihat ulasan *helpful* jauh lebih panjang
+(93,8 kata vs 42,1 kata).
+
+![EDA domain Beauty](assets/eda_beauty.png)
+
+### Perbandingan Metrik
+
+| F1-Score | Waktu Training |
+|---|---|
+| ![F1-Score](assets/perbandingan_f1.png) | ![Waktu training](assets/waktu_training.png) |
+
+| Waktu Inferensi | Ukuran Model |
+|---|---|
+| ![Waktu inferensi](assets/waktu_inferensi.png) | ![Ukuran model](assets/ukuran_model.png) |
+
+### Trade-off Kecepatan vs Akurasi
+
+![Trade-off](assets/tradeoff.png)
+
+### Confusion Matrix
+
+| BERT | DistilBERT |
+|---|---|
+| ![Confusion matrix BERT](assets/confusion_matrix_bert.png) | ![Confusion matrix DistilBERT](assets/confusion_matrix_distilbert.png) |
+
+### Kurva ROC
+
+![Kurva ROC](assets/roc_curve.png)
+
 ## Struktur Repository
 
 ```
 .
 ├── notebooks/
 │   └── beauty_helpfulness_bert_distilbert.ipynb   # EDA + training + evaluasi
+├── assets/                                        # Gambar EDA & hasil eksperimen
 ├── data/
 │   └── README.md                                  # Cara mengunduh & menyiapkan dataset
 ├── requirements.txt
