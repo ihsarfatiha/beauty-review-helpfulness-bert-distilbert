@@ -1,8 +1,12 @@
-# Analisis Prediktif Kebergunaan (Helpfulness) Ulasan E-Commerce Berbasis Model Transformer
+# Klasifikasi Kebergunaan (Helpfulness) Ulasan E-Commerce Domain Beauty Berbasis BERT dan DistilBERT
 
 Perbandingan **BERT vs DistilBERT** dalam memprediksi apakah sebuah ulasan
 e-commerce *helpful* atau *not helpful*, dengan menekankan trade-off antara
 **akurasi** dan **efisiensi komputasi**.
+
+> **Scope:** Repository ini memuat porsi **domain Beauty** dari penelitian
+> kelompok lintas domain (Electronics, Beauty, Home). Domain Electronics dan Home
+> dikerjakan oleh anggota lain; hasil lengkapnya ada pada laporan kelompok.
 
 Proyek Metode Penelitian — Kelompok 11, Teknik Informatika, Universitas Mercu Buana.
 
@@ -24,9 +28,27 @@ dibandingkan dua model Transformer:
 | **BERT** (`bert-base-uncased`) | 12 layer encoder | ±110M | ±418 MB |
 | **DistilBERT** (`distilbert-base-uncased`) | 6 layer encoder | ±66M | ±255 MB |
 
-## Hasil
+## Hasil (Domain Beauty)
 
-### Ringkasan lintas domain (laporan)
+| Model | F1-Score | Accuracy | Training (s) | Inference (ms/sampel) | Size (MB) | AUC |
+|---|---:|---:|---:|---:|---:|---:|
+| **BERT** | **0.698** | **0.7086** | 1190.58 | 1.399 | 417.66 | **0.7759** |
+| DistilBERT | 0.694 | 0.7035 | **654.28** | **1.287** | **255.42** | 0.7736 |
+
+**Temuan utama (domain Beauty)**
+
+- Selisih F1-Score BERT dan DistilBERT hanya **0,4%** — performa praktis setara.
+- DistilBERT **39% lebih kecil** (255 MB vs 418 MB) dan **±1,09× lebih cepat**.
+- Pada domain Beauty, BERT sedikit unggul dalam akurasi; DistilBERT unggul
+  dalam efisiensi. Selisih akurasi yang tipis membuat DistilBERT tetap layak
+  dipertimbangkan bila throughput dan keterbatasan sumber daya jadi prioritas.
+- AUC kedua model hampir identik (0,776 vs 0,774), menandakan kemampuan
+  diskriminasi yang setara.
+
+### Konteks: hasil penelitian kelompok (lintas domain)
+
+Tabel berikut berasal dari laporan kelompok dan **bukan** hasil eksperimen
+repository ini. Ditampilkan hanya sebagai konteks perbandingan.
 
 | Domain | Model | F1-Score | Latency (ms) | Speedup |
 |---|---|---:|---:|---:|
@@ -37,32 +59,14 @@ dibandingkan dua model Transformer:
 | Home | **BERT** | **0.964** | 7.75 | 1.93× |
 | Home | DistilBERT | 0.962 | **4.02** | |
 
-### Detail eksperimen domain Beauty (notebook)
-
-| Model | F1-Score | Accuracy | Training (s) | Inference (ms/sampel) | Size (MB) | AUC |
-|---|---:|---:|---:|---:|---:|---:|
-| BERT | 0.698 | 0.7086 | 1190.58 | 1.399 | 417.66 | 0.7759 |
-| DistilBERT | 0.694 | 0.7035 | 654.28 | 1.287 | 255.42 | 0.7736 |
-
-**Temuan utama**
-
-- Selisih F1-Score kedua model **di bawah 1%** di semua domain — performa praktis setara.
-- DistilBERT **38–42% lebih kecil** dan hingga **1,93× lebih cepat**.
-- Tidak ada model yang unggul universal; pemilihan model bergantung pada
-  karakteristik bahasa tiap domain.
-- DistilBERT layak menjadi model default untuk deployment real-time, sedangkan
-  BERT masih relevan ketika akurasi menjadi prioritas utama.
-
 ## Struktur Repository
 
 ```
 .
 ├── notebooks/
-│   └── Metopen_final_jadi.ipynb     # EDA + training + evaluasi BERT & DistilBERT
-├── docs/
-│   └── Laporan_Kelompok11_Analisis_Helpfulness_BERT_DistilBERT.pdf  # Laporan (BAB I–V)
+│   └── beauty_helpfulness_bert_distilbert.ipynb   # EDA + training + evaluasi
 ├── data/
-│   └── README.md                    # Cara mengunduh & menyiapkan dataset
+│   └── README.md                                  # Cara mengunduh & menyiapkan dataset
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -76,7 +80,7 @@ dibandingkan dua model Transformer:
 ### Opsi A — Google Colab (disarankan)
 
 1. Buka [Colab](https://colab.research.google.com/), pilih **Upload** →
-   `notebooks/Metopen_final_jadi.ipynb`.
+   `notebooks/beauty_helpfulness_bert_distilbert.ipynb`.
 2. Aktifkan GPU: **Runtime → Change runtime type → T4 GPU**.
 3. Unggah `Beauty_dataset_amazon.csv` ke direktori kerja Colab.
 4. Jalankan semua sel (**Runtime → Run all**). Notebook akan menghasilkan
@@ -121,11 +125,11 @@ folder `data/` (agar path relatif pada notebook sesuai).
 
 ## Tim
 
-| Nama | NIM |
-|---|---|
-| Tegar Wijaya Kusuma | 41523010217 |
-| Ali Umar Rafsanjani | 41523010191 |
-| Muhammad Ihsar Fatiha | 41523010202 |
+| Nama | NIM | Kontribusi |
+|---|---|---|
+| Tegar Wijaya Kusuma | 41523010217 | Domain Electronics |
+| Ali Umar Rafsanjani | 41523010191 | Domain Home |
+| Muhammad Ihsar Fatiha | 41523010202 | Domain Beauty (repository ini) |
 
 **Dosen Pengampu:** Eliyani, Dr. Ir., M.Kom.
 

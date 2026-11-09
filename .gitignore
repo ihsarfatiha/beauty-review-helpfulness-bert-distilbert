@@ -1,3 +1,6 @@
+# ---- Dokumen laporan (tidak diunggah) ----
+docs/*.pdf
+
 # ---- Data ----
 # Dataset mentah & turunan terlalu besar untuk GitHub (raw ±204 MB, limit GitHub 100 MB/file).
 # Lihat data/README.md untuk cara mengunduh dan menyiapkan dataset.
